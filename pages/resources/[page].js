@@ -28,6 +28,8 @@ import {
   RESOURCE_SEARCH_BUTTON,
   RESOURCE_RESET_BUTTON,
 } from 'common/constants/testIDs';
+import Modal from '../../components/Modal/Modal';
+import ShareResourceModal from '../ShareResourceModal';
 import styles from '../styles/resources.module.css';
 
 const pageTitle = 'Resources';
@@ -49,6 +51,8 @@ function Resources() {
   const [totalPages, setTotalPages] = useState(currentPage);
   const [allCategories, setAllCategories] = useState([]);
   const [allLanguages, setAllLanguages] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
 
   const costOptions = [
     { value: 'true', label: 'Paid' },
@@ -268,10 +272,20 @@ function Resources() {
                     >
                       Reset
                     </Button>
+                    <Button onClick={() => setShowModal(() => true)}>Share Resource</Button>
+
+                    <Modal
+                      isOpen={showModal}
+                      onRequestClose={() => setShowModal(() => false)}
+                      screenReaderLabel="This is how the modal will be declared to screen r…"
+                    >
+                      <ShareResourceModal />
+                    </Modal>
                   </div>
                 </Form>
               )}
             </Formik>
+            <Modal />
 
             {isLoading ? (
               <ResourceSkeletonCard numberOfSkeletons={10} />
