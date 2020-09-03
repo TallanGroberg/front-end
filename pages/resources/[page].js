@@ -178,11 +178,13 @@ function Resources() {
       <Head title={pageTitle} />
 
       <HeroBanner title={pageTitle} className="smallHero" />
-
       <Content
         theme="white"
         columns={[
           <section className={styles.resourcesContainer}>
+            <Button style={{ position: 'center' }} onClick={() => setShowModal(() => true)}>
+              Share Resource
+            </Button>
             <OutboundLink
               href="https://www.algolia.com/doc/"
               analyticsEventLabel="Powered by Algolia"
@@ -272,14 +274,16 @@ function Resources() {
                     >
                       Reset
                     </Button>
-                    <Button onClick={() => setShowModal(() => true)}>Share Resource</Button>
 
                     <Modal
                       isOpen={showModal}
                       onRequestClose={() => setShowModal(() => false)}
                       screenReaderLabel="This is how the modal will be declared to screen r…"
                     >
-                      <ShareResourceModal />
+                      <ShareResourceModal
+                        allCategories={allCategories}
+                        allLanguages={allLanguages}
+                      />
                     </Modal>
                   </div>
                 </Form>
