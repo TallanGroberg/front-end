@@ -289,7 +289,7 @@ function Resources() {
                 </Form>
               )}
             </Formik>
-            <Modal />
+            <Modal style={{ backgroundColor: '#203749' }} />
 
             {isLoading ? (
               <ResourceSkeletonCard numberOfSkeletons={10} />
